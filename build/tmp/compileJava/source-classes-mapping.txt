@@ -1,2 +1,2 @@
-com/userregistrationtest/UserMain.java
- com.userregistrationtest.UserMain
+com/userregistration/UserMain.java
+ com.userregistration.UserMain
