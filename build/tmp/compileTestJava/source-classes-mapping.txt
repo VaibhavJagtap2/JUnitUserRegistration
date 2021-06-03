@@ -1,0 +1,2 @@
+com/userregistration/UserRegistrationTest.java
+ com.userregistration.UserRegistrationTest
