@@ -77,6 +77,29 @@ public class UserRegistrationTest {
         Assert.assertEquals(result, false);
 
     }
-
+    @Test
+    public void givenPhoneNumber_WhenPhoneNumberIsFollowedByCountryCode_True() {
+        UserMain userMain = new UserMain();
+        boolean result = userMain.Phone("91 8794385484");
+        Assert.assertEquals(result,true);
+    }
+    @Test
+    public void givenPhoneNumber_IsNotFollowedByCountryCode_ShouldReturn_False(){
+        UserMain userMain = new UserMain();
+        boolean result = userMain.Phone("892393903");
+        Assert.assertEquals(result,false);
+    }
+    @Test
+    public void givenPhoneNumber_WhenPhoneNumberIsTenDigit_True() {
+        UserMain userMain = new UserMain();
+        boolean result = userMain.Phone("91 7868334363");
+        Assert.assertEquals(result,true);
+    }
+    @Test
+    public void givenPhoneNumber_WhenPhoneNumberIsNotTenDigit_ShouldReturn_False() {
+        UserMain userMain = new UserMain();
+        boolean result = userMain.Phone("91 812399423");
+        Assert.assertEquals(result,false);
+    }
 }
 
