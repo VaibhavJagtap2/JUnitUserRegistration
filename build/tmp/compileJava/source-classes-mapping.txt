@@ -1,2 +1,4 @@
+com/userregistration/InvalidUserException.java
+ com.userregistration.InvalidUserException
 com/userregistration/UserMain.java
  com.userregistration.UserMain

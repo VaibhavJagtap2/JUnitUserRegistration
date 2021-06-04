@@ -3,6 +3,7 @@ package com.userregistration;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -11,197 +12,102 @@ import java.util.List;
 
 public class UserRegistrationTest {
     @Test
-    //when the name starts with a capital letter
     public void givenFirstName_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.FirstName("Vaibhav");
-        Assert.assertEquals(true, result);
+        boolean result=false;
+        try {
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(InvalidUserException.class);
+            UserMain userMain = new UserMain();
+            result = userMain.FirstName("^[A-Z]{1}[a-z]{2,}$", "Vaibhav");
+        }
+        catch (InvalidUserException e){
+            e.printStackTrace();
+        }
+        Assert.assertTrue(result);
     }
-    @Test
-    //when a name starts with a small letter
-    public void givenFirstName_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.FirstName("vaibhav");
-        Assert.assertEquals(false, result);
-    }
-    //when a name has 3 or more letters
-    @Test
-    public void givenFirstName_MinimumThreeLetters_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.FirstName("Vai");
-        Assert.assertEquals(true, result);
-    }
-    @Test
-    //when a name does not contain 3 minimum letters
-    public void givenFirstName_NotHaveMinimumThreeLetters_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.FirstName("Va");
-        Assert.assertEquals(false, result);
-    }
-
     @Test
     public void givenLastName_WhenLastNameStartsWithCapitalLetter_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.LastName("Jagtap");
-        Assert.assertEquals(true, result);
+        boolean result =false;
+        try {
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(InvalidUserException.class);
+            UserMain userMain = new UserMain();
+            result = userMain.LastName("^[A-Z]{1}[a-z]{2,}$", "Jagtap");
+        }catch (InvalidUserException e){
+            e.printStackTrace();
+        }
+        Assert.assertTrue(result);
     }
-
-    @Test
-    public void givenLastName_WhenLastNameNotStartsWithCapitalLetter_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.LastName("jagtap");
-        Assert.assertEquals(false, result);
-    }
-
-    @Test
-    public void givenLastName_WhenLastNameHaveMinimumThreeLetter_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.LastName("Jag");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void givenLastName_WhenLastNameNotHaveMinimumThreeLetter_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.LastName("ja");
-        Assert.assertEquals(false, result);
-    }
-
     @Test
     public void givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Email("abc45@gmail.com");
-        Assert.assertEquals(true, result);
+        boolean result = false;
+        try {
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(InvalidUserException.class);
+            UserMain userMain = new UserMain();
+            result = userMain.Email("^[a-zA-Z0-9\\\\-\\\\+\\\\.]+.([a-zA-Z0-9])*@([a-z0-9]+.[a-z]{2,}.([a-z]{2,})?)$","vaibhav64@gmail.com");
+        }catch (InvalidUserException e){
+            e.printStackTrace();
+        }
+        Assert.assertTrue(result);
     }
-
-    @Test
-    public void givenEmail_WhenEmailNotStartsWithSmallLetter_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Email("Abc@gmail.com");
-        Assert.assertEquals(false, result);
-    }
-
-    @Test
-    public void givenEmail_WhenEmailEndsWithComOrIn_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Email("abc111@yahoo.com");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void givenEmail_WhenEmailNotEndsWithComOrIn_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Email("Abc@gmail.kjnk");
-        Assert.assertEquals(false, result);
-    }
-
     @Test
     public void givenPhoneNumber_WhenPhoneNumberIsFollowedByCountryCode_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Phone("91 9604445258");
-        Assert.assertEquals(true, result);
+        boolean result =false;
+        try {
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(InvalidUserException.class);
+            UserMain userMain = new UserMain();
+            result = userMain.Phone("^[1-9][0-9]+[ ]{0,1}+[1-9][0-9]{9}$","91 9604445258");
+        }catch (InvalidUserException e){
+            e.printStackTrace();
+        }
+        Assert.assertTrue(result);
     }
-
-    @Test
-    public void givenPhoneNumber_WhenPhoneNumberIsNotFollowedByCountryCode_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Phone("8105215414");
-        Assert.assertEquals(false, result);
-    }
-
-    @Test
-    public void givenPhoneNumber_WhenPhoneNumberIsTenDigit_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Phone("91 9604445258");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void givenPhoneNumber_WhenPhoneNumberIsNotTenDigit_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Phone("91 8105215");
-        Assert.assertEquals(false, result);
-    }
-
-    @Test
-    public void givenPassword_WhenPasswordIsMinimumEightDigit_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("Vaibhav43#2");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void givenPassword_WhenPasswordIsNotMinimumEightDigit_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("vaibns");
-        Assert.assertEquals(false, result);
-    }
-
     @Test
     public void givenPassword_WhenPasswordHaveAtleastOneCapitalLetter_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("Vaibhav@345");
-        Assert.assertEquals(true, result);
+        boolean result =false;
+        try {
+            ExpectedException expectedException = ExpectedException.none();
+            expectedException.expect(InvalidUserException.class);
+            UserMain userMain = new UserMain();
+            result = userMain.Password("(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]{1}).{8,}","Vaibhav@123");
+        }catch (InvalidUserException e){
+            e.printStackTrace();
+        }
+        Assert.assertTrue(result);
     }
-
-    @Test
-    public void givenPassword_WhenPasswordNotHaveAtleastOneCapitalLetter_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("vsvsai@");
-        Assert.assertEquals(false, result);
-    }
-
-    @Test
-    public void givenPassword_WhenPasswordHaveAtleastOneNumericNumber_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("Vaibhav2@3");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void givenPassword_WhenPasswordNotHaveAtleastOneNumericNumber_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("adased@");
-        Assert.assertEquals(false, result);
-    }
-
-    @Test
-    public void givenPassword_WhenPasswordHaveAtleastOneSpeacialCharacter_ShouldReturn_True() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("Vaibahv234$");
-        Assert.assertEquals(true, result);
-    }
-
-    @Test
-    public void givenPassword_WhenPasswordNotHaveAtleastOneSpeacialCharacter_ShouldReturn_False() {
-        UserMain userMain = new UserMain();
-        boolean result = userMain.Password("vaibahv123");
-        Assert.assertEquals(false, result);
-    }
-//Parameterised Test
+    //UseCase11-Parameterised Test to validate multiple entry for the Email Address.
     @RunWith(Parameterized.class)
-    public static class FormRegistration {
+    public static class TestFormRegistration
+    {
         String emailId;
         boolean expectedResult;
         private UserMain emailVariable;
         UserMain formObject = new UserMain();
-        public FormRegistration(String emailId,boolean expectedResult) {
+        public TestFormRegistration(String emailId, boolean expectedResult)
+        {
             this.emailId = emailId;
             this.expectedResult = expectedResult;
         }
         @Before
-        public void initialize(){
+        public void initialize()
+        {
             emailVariable = new UserMain();
         }
         @Parameterized.Parameters
-        public static List<Object[]> emails(){
-            return Arrays.asList(new Object[][] {{"Vaibhav@gmail.com",true},{"Vaibhav@gmail.co.in",true},{"vaibhav@gmail.com",false}});
+        public static List<Object[]> emails()
+        {
+            return Arrays.asList(new Object[][] { {"Avinash@gmail.com", true}, {"Avinash@gmail.co.in",true}, {"avinashgmail.com", false}});
         }
         @Test
-        public void testEmailId(){
-            System.out.println("parameter email is-> " + emailId);
-            Assert.assertEquals(expectedResult,emailVariable.multipleEmailvalidate(emailId));
+        public void testEmailId() throws InvalidUserException {
+            try {
+                System.out.println("parameter email is->" + emailId);
+                Assert.assertEquals(expectedResult, emailVariable.multipleEmailvalidate(emailId));
+            } catch (NullPointerException e) {
+                System.out.println(e);
+            }
         }
+    }
 }
-}
-
