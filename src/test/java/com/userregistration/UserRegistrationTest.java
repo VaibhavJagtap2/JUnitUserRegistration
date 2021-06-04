@@ -1,7 +1,13 @@
 package com.userregistration;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class UserRegistrationTest {
     @Test
@@ -172,5 +178,30 @@ public class UserRegistrationTest {
         boolean result = userMain.Password("vaibahv123");
         Assert.assertEquals(false, result);
     }
+//Parameterised Test
+    @RunWith(Parameterized.class)
+    public static class FormRegistration {
+        String emailId;
+        boolean expectedResult;
+        private UserMain emailVariable;
+        UserMain formObject = new UserMain();
+        public FormRegistration(String emailId,boolean expectedResult) {
+            this.emailId = emailId;
+            this.expectedResult = expectedResult;
+        }
+        @Before
+        public void initialize(){
+            emailVariable = new UserMain();
+        }
+        @Parameterized.Parameters
+        public static List<Object[]> emails(){
+            return Arrays.asList(new Object[][] {{"Vaibhav@gmail.com",true},{"Vaibhav@gmail.co.in",true},{"vaibhav@gmail.com",false}});
+        }
+        @Test
+        public void testEmailId(){
+            System.out.println("parameter email is-> " + emailId);
+            Assert.assertEquals(expectedResult,emailVariable.multipleEmailvalidate(emailId));
+        }
+}
 }
 

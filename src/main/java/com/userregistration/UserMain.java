@@ -4,9 +4,10 @@ import java.util.regex.Pattern;
 
 public class UserMain {
     private final String NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
-    private final String EMAIL_PATTERN = "^[a-z]+[A-Z0-9.+_-]+[@][a-zA-Z0-9]+[.]co(m|.in)$";
+//    private final String EMAIL_PATTERN = "^[a-z]+[A-Z0-9.+_-]+[@][a-zA-Z0-9]+[.]co(m|.in)$";
     private final String PHONE_PATTERN = "^[1-9][0-9]+[ ]{0,1}+[1-9][0-9]{9}$";
     private final String PASSWORD_PATTERN = "(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]{1}).{8,}";
+    private final String EMAIL_PATTERN = "^[a-zA-Z0-9\\\\-\\\\+\\\\.]+.([a-zA-Z0-9])*@([a-z0-9]+.[a-z]{2,}.([a-z]{2,})?)$";
 
     public boolean FirstName(String firstName){
         Pattern pattern = Pattern.compile(NAME_PATTERN);
@@ -27,6 +28,15 @@ public class UserMain {
     public boolean Password(String password) {
         Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
         return pattern.matcher(password).matches();
+
+    }
+    public boolean multipleEmailvalidate(String email){
+        if(Pattern.matches(EMAIL_PATTERN,email)){
+            return true;
+        }
+        else{
+            return false;
+        }
 
     }
 }
