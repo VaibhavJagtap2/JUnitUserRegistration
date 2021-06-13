@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class UserRegistrationTest {
+
     @Test
     public void givenFirstName_ShouldReturn_True() {
         boolean result=false;
@@ -18,7 +19,7 @@ public class UserRegistrationTest {
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(InvalidUserException.class);
             UserMain userMain = new UserMain();
-            result = userMain.FirstName("^[A-Z]{1}[a-z]{2,}$", "Vaibhav");
+            result = userMain.FirstName("^[A-Z]{1}[a-z]{2,}$", "Avinash");
         }
         catch (InvalidUserException e){
             e.printStackTrace();
@@ -32,7 +33,7 @@ public class UserRegistrationTest {
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(InvalidUserException.class);
             UserMain userMain = new UserMain();
-            result = userMain.LastName("^[A-Z]{1}[a-z]{2,}$", "Jagtap");
+            result = userMain.LastName("^[A-Z]{1}[a-z]{2,}$", "Biradar");
         }catch (InvalidUserException e){
             e.printStackTrace();
         }
@@ -40,12 +41,12 @@ public class UserRegistrationTest {
     }
     @Test
     public void givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True() {
-        boolean result = false;
+        boolean result =false;
         try {
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(InvalidUserException.class);
             UserMain userMain = new UserMain();
-            result = userMain.Email("^[a-zA-Z0-9\\\\-\\\\+\\\\.]+.([a-zA-Z0-9])*@([a-z0-9]+.[a-z]{2,}.([a-z]{2,})?)$","vaibhav64@gmail.com");
+            result = userMain.Email("^[a-zA-Z0-9\\\\-\\\\+\\\\.]+.([a-zA-Z0-9])*@([a-z0-9]+.[a-z]{2,}.([a-z]{2,})?)$","avinashbiradar64@gmail.com");
         }catch (InvalidUserException e){
             e.printStackTrace();
         }
@@ -71,13 +72,12 @@ public class UserRegistrationTest {
             ExpectedException expectedException = ExpectedException.none();
             expectedException.expect(InvalidUserException.class);
             UserMain userMain = new UserMain();
-            result = userMain.Password("(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]{1}).{8,}","Vaibhav@123");
+            result = userMain.Password("(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%!]{1}).{8,}","Avinash@123");
         }catch (InvalidUserException e){
             e.printStackTrace();
         }
         Assert.assertTrue(result);
     }
-    //UseCase11-Parameterised Test to validate multiple entry for the Email Address.
     @RunWith(Parameterized.class)
     public static class TestFormRegistration
     {

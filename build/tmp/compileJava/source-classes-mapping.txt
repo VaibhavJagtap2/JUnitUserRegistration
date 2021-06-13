@@ -2,3 +2,8 @@ com/userregistration/InvalidUserException.java
  com.userregistration.InvalidUserException
 com/userregistration/UserMain.java
  com.userregistration.UserMain
+com/userregistration/UserRegistrationLambda.java
+ com.userregistration.UserRegistrationLambda
+ com.userregistration.UserRegistrationLambda$Check
+com/userregistration/UserLambda.java
+ com.userregistration.UserLambda

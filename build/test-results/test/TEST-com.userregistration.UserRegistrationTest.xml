@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.userregistration.UserRegistrationTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-06-04T16:54:08" hostname="DESKTOP-4QDC4A3" time="0.009">
+<testsuite name="com.userregistration.UserRegistrationTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2021-06-11T12:18:28" hostname="DESKTOP-4QDC4A3" time="0.052">
   <properties/>
-  <testcase name="givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True" classname="com.userregistration.UserRegistrationTest" time="0.009">
+  <testcase name="givenLastName_WhenLastNameStartsWithCapitalLetter_ShouldReturn_True" classname="com.userregistration.UserRegistrationTest" time="0.018"/>
+  <testcase name="givenPassword_WhenPasswordHaveAtleastOneCapitalLetter_ShouldReturn_True" classname="com.userregistration.UserRegistrationTest" time="0.001"/>
+  <testcase name="givenFirstName_ShouldReturn_True" classname="com.userregistration.UserRegistrationTest" time="0.001"/>
+  <testcase name="givenPhoneNumber_WhenPhoneNumberIsFollowedByCountryCode_True" classname="com.userregistration.UserRegistrationTest" time="0.001"/>
+  <testcase name="givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True" classname="com.userregistration.UserRegistrationTest" time="0.025">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:86)
 	at org.junit.Assert.assertTrue(Assert.java:41)
 	at org.junit.Assert.assertTrue(Assert.java:52)
-	at com.userregistration.UserRegistrationTest.givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True(UserRegistrationTest.java:52)
+	at com.userregistration.UserRegistrationTest.givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True(UserRegistrationTest.java:53)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
